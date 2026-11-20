@@ -1,0 +1,16 @@
+{
+    "source": {
+       "aws_access_key_id": "s3server-aws_access_key_id",
+        "aws_secret_access_key":"s3server-aws_secret_access_key" ,
+        "bucket": "bucket-rivadata",
+        "folder": "retail",
+        "file": "sales.parquet"
+    },
+    "target": {
+        "base_path": "/Volumes/retaildataplatform/bronze/raw_data/",
+        "folder": "s3-ingestion",
+        "file_format": "parquet",
+        "mode": "overwrite"
+    },
+    "write_options":null
+}

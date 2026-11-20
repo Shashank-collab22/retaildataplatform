@@ -1,0 +1,10 @@
+{
+  "source": {
+    "source_name": "dim_product",
+    "source_table": "retaildataplatform.silver.order_products",
+    "category_source_table": "retaildataplatform.silver.sales"
+  },
+  "target": {
+    "target_table": "retaildataplatform.gold.dim_product"
+  }
+}

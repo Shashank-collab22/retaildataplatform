@@ -1,0 +1,53 @@
+{
+    "source": {
+        "source_table": "retaildataplatform.bronze.sqlserver_customers",
+        "source_name": "sqlserver_customers"
+    },
+    "target": {
+        "target_table": "retaildataplatform.silver.customers"
+    },
+    "rename_columns": {
+        "last_upadte_ts": "last_update_ts"
+    },
+    "cast_columns": {
+        "customer_id": "long",
+        "valid_from": "timestamp",
+        "valid_to": "timestamp"
+    },
+    "drop_columns": ["name_parts", "customer_name", "file_path"],
+    "deduplication": {
+        "enabled": true,
+        "key_columns": ["customer_id"],
+        "order_by": [
+            {"column": "last_update_ts", "direction": "desc", "nulls": "last"}
+        ]
+    },
+    "select_columns": [
+        "customer_id",
+        "first_name",
+        "last_name",
+        "tax_id",
+        "tax_code",
+        "country",
+        "state",
+        "city",
+        "postcode",
+        "street",
+        "number",
+        "unit",
+        "region",
+        "district",
+        "lon",
+        "lat",
+        "ship_to_address",
+        "valid_from",
+        "valid_to",
+        "units_purchased",
+        "loyalty_segment",
+        "last_update_ts"
+    ],
+    "scd": {
+        "type": 1,
+        "key_columns": ["customer_id"]
+    }
+}

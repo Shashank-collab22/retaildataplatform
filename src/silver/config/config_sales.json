@@ -1,0 +1,45 @@
+{
+    "source": {
+        "source_table": "retaildataplatform.bronze.s3server_customers",
+        "source_name": "s3server_sales"
+    },
+    "target": {
+        "target_table": "retaildataplatform.silver.sales"
+    },
+    "rename_columns": {
+        "last_upadte_ts": "last_update_ts"
+    },
+    "cast_columns": {
+        "customer_id": "long",
+        "product_price": "double",
+        "quantity": "int",
+        "total_price": "double"
+    },
+    "drop_columns": ["product_name_json"],
+    "deduplication": {
+        "enabled": true,
+        "key_columns": ["customer_id", "product_id"],
+        "order_by": [
+            {"column": "last_update_ts", "direction": "desc", "nulls": "last"}
+        ]
+    },
+    "select_columns": [
+        "customer_id",
+        "customer_name",
+        "product_name",
+        "order_date",
+        "product_category",
+        "currency",
+        "product_id",
+        "product_price",
+        "quantity",
+        "unit",
+        "total_price",
+        "last_update_ts",
+        "file_path"
+    ],
+    "scd": {
+        "type": 1,
+        "key_columns": ["customer_id", "product_id"]
+    }
+}
